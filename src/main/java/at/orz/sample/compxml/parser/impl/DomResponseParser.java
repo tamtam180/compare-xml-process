@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import at.orz.sample.compxml.entity.ImageSearchResultEntitty;
+import at.orz.sample.compxml.entity.ImageSearchResultEntity;
 import at.orz.sample.compxml.entity.ImageSearchResultSet;
 import at.orz.sample.compxml.entity.ImageSearchThumbnailEntity;
 import at.orz.sample.compxml.parser.ResponseParser;
@@ -37,7 +37,7 @@ public class DomResponseParser implements ResponseParser {
 			return null;
 		}
 		
-		ArrayList<ImageSearchResultEntitty> list = new ArrayList<>();
+		ArrayList<ImageSearchResultEntity> list = new ArrayList<>();
 		ImageSearchResultSet resultSet = new ImageSearchResultSet(list);
 
 		resultSet.setTotalResultsAvailable(Long.parseLong(root.getAttribute("totalResultsAvailable")));
@@ -48,7 +48,7 @@ public class DomResponseParser implements ResponseParser {
 		for (int i = 0, imax = resultNodeList.getLength(); i < imax; i++) {
 			Node resultNode = resultNodeList.item(i);
 			if ("Result".equals(resultNode.getNodeName())) {
-				ImageSearchResultEntitty result = toResultEntity(resultNode);
+				ImageSearchResultEntity result = toResultEntity(resultNode);
 				list.add(result);
 			}
 		}
@@ -57,9 +57,9 @@ public class DomResponseParser implements ResponseParser {
 		
 	}
 	
-	private ImageSearchResultEntitty toResultEntity(Node node) {
+	private ImageSearchResultEntity toResultEntity(Node node) {
 
-		ImageSearchResultEntitty entity = new ImageSearchResultEntitty();
+		ImageSearchResultEntity entity = new ImageSearchResultEntity();
 
 		NodeList resultChildNodes = node.getChildNodes();
 		for (int j = 0, jmax = resultChildNodes.getLength(); j < jmax; j++) {

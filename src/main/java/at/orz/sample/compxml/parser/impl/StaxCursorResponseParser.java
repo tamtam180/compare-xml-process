@@ -15,7 +15,7 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
-import at.orz.sample.compxml.entity.ImageSearchResultEntitty;
+import at.orz.sample.compxml.entity.ImageSearchResultEntity;
 import at.orz.sample.compxml.entity.ImageSearchResultSet;
 import at.orz.sample.compxml.entity.ImageSearchThumbnailEntity;
 import at.orz.sample.compxml.parser.ResponseParser;
@@ -66,9 +66,9 @@ public class StaxCursorResponseParser implements ResponseParser {
 		throw new IllegalStateException();
 	}
 
-	private ImageSearchResultEntitty processResult(XMLStreamReader reader) throws XMLStreamException {
+	private ImageSearchResultEntity processResult(XMLStreamReader reader) throws XMLStreamException {
 		
-		ImageSearchResultEntitty result = new ImageSearchResultEntitty();
+		ImageSearchResultEntity result = new ImageSearchResultEntity();
 		
 		while (reader.hasNext()) {
 			reader.next();
@@ -162,10 +162,10 @@ public class StaxCursorResponseParser implements ResponseParser {
 		}
 		Map<String, String> resultSetAttrMap = toAttributeMap(reader);
 		
-		ArrayList<ImageSearchResultEntitty> list = new ArrayList<>();
+		ArrayList<ImageSearchResultEntity> list = new ArrayList<>();
 		
 		while (seek(reader, "Result")) {
-			ImageSearchResultEntitty result = processResult(reader);
+			ImageSearchResultEntity result = processResult(reader);
 			list.add(result);
 		}
 		reader.close();

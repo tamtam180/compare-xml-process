@@ -14,7 +14,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import at.orz.sample.compxml.entity.ImageSearchResultEntitty;
+import at.orz.sample.compxml.entity.ImageSearchResultEntity;
 import at.orz.sample.compxml.entity.ImageSearchResultSet;
 import at.orz.sample.compxml.entity.ImageSearchThumbnailEntity;
 import at.orz.sample.compxml.parser.ResponseParser;
@@ -42,14 +42,14 @@ public class SaxResponseParser implements ResponseParser {
 	@Override
 	public ImageSearchResultSet parse(File xmlFile) throws Exception {
 		
-		final ArrayList<ImageSearchResultEntitty> list = new ArrayList<>();
+		final ArrayList<ImageSearchResultEntity> list = new ArrayList<>();
 		final ImageSearchResultSet resultSet = new ImageSearchResultSet(list);
 		
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		SAXParser parser = factory.newSAXParser();
 		parser.parse(xmlFile, new DefaultHandler() {
 			private Stack<SaxStackElement> stack = new Stack<>();
-			private ImageSearchResultEntitty curResult = null;
+			private ImageSearchResultEntity curResult = null;
 			private ImageSearchThumbnailEntity curThumbnail = null;
 			//private boolean inThumbnail = false;
 			@Override
@@ -63,7 +63,7 @@ public class SaxResponseParser implements ResponseParser {
 					resultSet.setTotalResultsReturned(Integer.parseInt(attributes.getValue("totalResultsReturned")));
 					resultSet.setFirstResultPosition(Integer.parseInt(attributes.getValue("firstResultPosition")));
 				} else if ("Result".equals(qName)) {
-					curResult = new ImageSearchResultEntitty();
+					curResult = new ImageSearchResultEntity();
 				} else if ("Thumbnail".equals(qName)) {
 					curThumbnail = new ImageSearchThumbnailEntity();
 				}

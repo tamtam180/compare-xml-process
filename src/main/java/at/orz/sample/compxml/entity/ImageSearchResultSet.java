@@ -11,9 +11,9 @@ import java.util.List;
  * @author tamtam
  *
  */
-public class ImageSearchResultSet implements Iterable<ImageSearchResultEntitty> {
+public class ImageSearchResultSet implements Iterable<ImageSearchResultEntity> {
 	
-	protected List<ImageSearchResultEntitty> results;
+	protected List<ImageSearchResultEntity> results;
 	protected long totalResultsAvailable;
 	protected int totalResultsReturned;
 	protected int firstResultPosition;
@@ -21,23 +21,23 @@ public class ImageSearchResultSet implements Iterable<ImageSearchResultEntitty> 
 	public ImageSearchResultSet() {
 	}
 	
-	public ImageSearchResultSet(List<ImageSearchResultEntitty> results) {
+	public ImageSearchResultSet(List<ImageSearchResultEntity> results) {
 		this.results = results;
 	}
 	
 	@Override
-	public Iterator<ImageSearchResultEntitty> iterator() {
+	public Iterator<ImageSearchResultEntity> iterator() {
 		if (results == null) {
 			return Collections.emptyIterator();
 		}
 		return results.iterator();
 	}
 
-	public List<ImageSearchResultEntitty> getResults() {
+	public List<ImageSearchResultEntity> getResults() {
 		return results;
 	}
 
-	public void setResults(List<ImageSearchResultEntitty> results) {
+	public void setResults(List<ImageSearchResultEntity> results) {
 		this.results = results;
 	}
 

@@ -7,7 +7,7 @@ package at.orz.sample.compxml.entity;
  * @author tamtam
  *
  */
-public class ImageSearchResultEntitty {
+public class ImageSearchResultEntity {
 	
 	protected String refererUrl;
 	protected String clickUrl;
